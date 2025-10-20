@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给你的一封情书</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        // 配置Tailwind自定义颜色和字体
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        love: {
+                            light: '#ff8fa3',
+                            DEFAULT: '#ff4d6d',
+                            dark: '#c9184a'
+                        }
+                    },
+                    fontFamily: {
+                        romantic: ['"Dancing Script"', 'cursive', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            }
+            .heart-beat {
+                animation: heartbeat 1.5s ease-in-out infinite;
+            }
+            .float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .bg-gradient-love {
+                background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* 引入浪漫字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+    </style>
+</head>
+<body class="bg-gradient-love min-h-screen overflow-x-hidden">
+    <!-- 漂浮爱心装饰 -->
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-4 py-12 relative z-10">
+        <!-- 标题区域 -->
+        <div class="text-center mb-12 mt-8">
+            <h1 class="text-[clamp(2.5rem,8vw,4rem)] font-romantic text-love-dark font-bold text-shadow transition-all duration-500 hover:scale-105">
+                致我最亲爱的
+            </h1>
+            <div class="mt-4 flex justify-center">
+                <i class="fa fa-heart text-love text-4xl heart-beat"></i>
+            </div>
+        </div>
+
+        <!-- 情书卡片 -->
+        <div class="max-w-2xl mx-auto bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden transition-all duration-700 hover:shadow-love/30 hover:shadow-xl">
+            <!-- 卡片封面 -->
+            <div id="card-cover" class="cursor-pointer">
+                <div class="p-12 text-center">
+                    <p class="font-romantic text-[clamp(1.8rem,5vw,2.5rem)] text-gray-700 mb-6">
+                        点击打开我的心意
+                    </p>
+                    <div class="inline-block bg-love text-white px-6 py-3 rounded-full font-romantic text-xl hover:bg-love-dark transition-colors duration-300">
+                        开启情书
+                    </div>
+                </div>
+                <div class="h-2 bg-gradient-to-r from-love-light to-love-dark"></div>
+            </div>
+
+            <!-- 情书内容 (默认隐藏) -->
+            <div id="card-content" class="hidden p-8 md:p-12">
+                <p class="font-romantic text-[clamp(1.2rem,4vw,1.8rem)] text-gray-700 mb-6 leading-relaxed">
+                    亲爱的，
+                </p>
+                <p class="font-romantic text-[clamp(1.2rem,4vw,1.8rem)] text-gray-700 mb-6 leading-relaxed">
+                    当我第一次见到你，我的世界就变得不一样了。你的笑容像阳光一样温暖，你的声音像音乐一样动听。
+                </p>
+                <p class="font-romantic text-[clamp(1.2rem,4vw,1.8rem)] text-gray-700 mb-6 leading-relaxed">
+                    和你在一起的每一刻，都充满了快乐和幸福。我喜欢看你认真的样子，喜欢听你分享生活中的小事，喜欢和你一起规划未来。
+                </p>
+                <p class="font-romantic text-[clamp(1.2rem,4vw,1.8rem)] text-gray-700 mb-8 leading-relaxed">
+                    今天，我想鼓起勇气告诉你：我喜欢你，不是一时兴起，而是深思熟虑。我希望能牵着你的手，一起走过未来的每一天。
+                </p>
+                <p class="font-romantic text-[clamp(1.5rem,5vw,2.2rem)] text-love-dark font-bold text-right mt-12">
+                    永远爱你的人
+                </p>
+            </div>
+        </div>
+
+        <!-- 选择区域 -->
+        <div id="choices" class="hidden max-w-md mx-auto mt-12 grid grid-cols-2 gap-6">
+            <button id="accept" class="bg-love hover:bg-love-dark text-white py-4 px-6 rounded-full text-xl font-romantic transition-all duration-300 transform hover:scale-105 shadow-lg">
+                我愿意
+            </button>
+            <button id="reject" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-4 px-6 rounded-full text-xl font-romantic transition-all duration-300 transform hover:scale-105 shadow-lg reject-btn">
+                再考虑
+            </button>
+        </div>
+
+        <!-- 成功提示 (默认隐藏) -->
+        <div id="success-message" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-3xl p-8 max-w-md text-center">
+                <div class="text-8xl mb-6">
+                    <i class="fa fa-heart text-love heart-beat"></i>
+                </div>
+                <h2 class="font-romantic text-[clamp(1.8rem,6vw,3rem)] text-love-dark mb-4">
+                    太好了！
+                </h2>
+                <p class="font-romantic text-[clamp(1.2rem,4vw,1.6rem)] text-gray-700 mb-8">
+                    我会用一生的时间来证明，这是你最正确的决定
+                </p>
+                <button id="close-success" class="bg-love hover:bg-love-dark text-white py-3 px-8 rounded-full text-lg font-romantic transition-colors duration-300">
+                    拉钩上吊
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 创建随机漂浮爱心
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const colors = ['#ff4d6d', '#ff8fa3', '#c9184a', '#fad0c4'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                const size = Math.random() * 20 + 10;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                heart.innerHTML = '<i class="fa fa-heart"></i>';
+                heart.className = 'absolute text-white opacity-70 float';
+                heart.style.cssText = `
+                    left: ${Math.random() * 100}vw;
+                    top: ${Math.random() * 100}vh;
+                    font-size: ${size}px;
+                    color: ${color};
+                    animation-delay: ${Math.random() * 5}s;
+                    animation-duration: ${Math.random() * 10 + 5}s;
+                    z-index: 0;
+                `;
+                
+                container.appendChild(heart);
+            }
+        }
+
+        // 卡片交互
+        document.getElementById('card-cover').addEventListener('click', function() {
+            this.classList.add('hidden');
+            document.getElementById('card-content').classList.remove('hidden');
+            document.getElementById('choices').classList.remove('hidden');
+            
+            // 添加出现动画
+            document.getElementById('card-content').classList.add('animate-fadeIn');
+        });
+
+        // 接受按钮
+        document.getElementById('accept').addEventListener('click', function() {
+            document.getElementById('success-message').classList.remove('hidden');
+        });
+
+        // 关闭成功提示
+        document.getElementById('close-success').addEventListener('click', function() {
+            document.getElementById('success-message').classList.add('hidden');
+        });
+
+        // 拒绝按钮（调皮效果）
+        const rejectBtn = document.querySelector('.reject-btn');
+        rejectBtn.addEventListener('mouseover', function() {
+            const x = Math.random() * (window.innerWidth - this.offsetWidth);
+            const y = Math.random() * (window.innerHeight - this.offsetHeight);
+            this.style.position = 'relative';
+            this.style.left = `${x}px`;
+            this.style.top = `${y}px`;
+        });
+
+        // 页面加载完成后创建爱心
+        window.addEventListener('load', createHearts);
+    </script>
+</body>
