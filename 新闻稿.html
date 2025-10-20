@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- div容器标签，也叫盒子标签
+     这是最常用的布局标签  -->
+    <div>
+        <!-- 标题标签 
+            h1-h6 六个等级的标题，h1最大，h6最小
+        -->
+        <h3>文博日历丨浓淡总相宜！这两份“秋色”尽显中式美学</h3>
+        <!-- 段落标签：
+            独占一行，前后都有空行    
+        -->
+        <p> 
+            2025-10-20 00:00:00 浏览量2025948
+        </p>
+        <!--  图片标签  img  -->
+        <img width="400px" src="https://cms-emer-res.cctvnews.cctv.com/cctv/video/20251018/fb846f766db34359a3a7a35c318e7d54/20251018163030094.jpg" />
+        <!--  <br/>换行标签  -->        
+        <br/>
+        <!-- 相对路径写法  当前目录./    上级目录../ -->
+        <img width="400" src="./1.png" />
+        <p>
+            秋日里的黄色或明丽或静谧<br/>
+            <br/>
+            一浓一淡尽显中式美学<br/>
+            <br/>
+            你心中的最美秋色是哪一抹黄？<br/>
+            <br/>
+            今天来认识两件文物<br/>
+            <br/>
+            它们的颜色与秋景绝配！<br/>
+        </p>
+        <p> 
+            先来看这款“朦胧美”的<b>黄釉暗龙纹盘</b>
+        </p>
+        <!--  超链接标签： a  
+            href属性：超链接地址
+            target属性：打开方式  _blank新窗口打开  _self本窗口打开（默认值）  
+        -->
+        <a target="_blank" href="https://www.douyin.com/jingxuan?modal_id=7543556693112786226">
+            点击打开抖音看<b>八块一只</b>的鸭子
+        </a>
+        <!-- 列表标签：
+            无序列表 ul  有序列表 ol
+            列表项 li
+        -->
+        <ul>
+            <li>黄色釉色温润如玉，宛若秋日暖阳。</li>
+            <li>盘内暗藏龙纹，若隐若现，如同秋雾中的景致。</li>
+            <li>整体造型简洁大方，体现中式美学的含蓄之美。</li>
+        </ul>
+        <ol>
+            <li>釉色明亮，宛如秋日的金黄田野。</li>
+            <li>盘面绘有精美的花卉图案，生动展现秋天的丰收景象。</li>
+            <li>造型优雅，体现出中式美学的细腻与精致。</li>
+        </ol>
+        <!-- 表格标签：
+            table 表格
+            tr 表格行
+            th 表头单元格
+            td 表格单元格
+        -->
+        <!-- border边框属性  
+            cellspacing单元格间距属性  
+            cellpadding单元格内边距属性 
+         -->
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr> 
+                <th>名称</th>
+                <th>朝代</th>
+                <th>材质</th>
+            </tr>
+            <tr>
+                <td>黄釉暗龙纹盘</td>
+                <td>明代</td>
+                <td>瓷器</td>
+            </tr>
+            <tr>
+                <td>黄釉花卉纹盘</td>
+                <td>清代</td>
+                <td>瓷器</td>
+            </tr>
+        </table>
+        <br/>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <!--- 表头合并属性 colspan列 rowspan行 --->
+            <tr>
+                <th colspan="3">第一学期</th>
+                <th colspan="3">第二学期</th>
+            </tr>
+            <tr>
+                <td>语文</td>
+                <td>数学</td>
+                <td>英语</td>
+                <td>语文</td>
+                <td>数学</td>
+                <td>英语</td>
+            </tr>
+            <tr>
+                <td>123</td>
+                <td>123</td>
+                <td>32</td>
+                <td>124</td>
+                <td>142</td>
+                <td>23</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
