@@ -1,0 +1,28 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    url: jdbc:mysql://47.108.131.32:3306/db_2022210393
+    username: 2022210393
+    password: 13882879598
+  servlet:
+    multipart:
+        max-file-size: 10MB #单个文件大小
+        max-request-size: 20MB #单次请求文件大小
+
+logging:
+  level:
+    com.stx: DEBUG
+
+#系统配置
+ssm:
+  config:
+    upload-dir: D:\\javaproject\\文档存储\\
+    allowed-origin: http://localhost:8081
+    allowed-suffix: .*\.(html|js|css|jpg)$
+    allowed-uri:
+      - /login
+      - /user/addUser
+      - /swagger-resources
+      - /v3/api-docs
